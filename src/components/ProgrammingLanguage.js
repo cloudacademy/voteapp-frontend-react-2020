@@ -41,7 +41,7 @@ class ProgrammingLanguage extends Component {
 
           <p><b>Uses</b>: {usecase}</p>
           <p><b>Rank</b>: {rank}</p>
-          <p><b>Homepage</b>: {homepage}</p>
+          <p><a href={homepage} target="blank">{homepage}</a></p>
           <div class="container">
             <div class="row">
               <div class="col">

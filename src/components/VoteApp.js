@@ -15,7 +15,7 @@ class VoteApp extends Component {
         <div class="container">
           <div class="row">
             <div class="col-md-4">
-              <ProgrammingLanguage id="csharp" logo="csharp.png"/>
+              <ProgrammingLanguage id="csharp" logo="csharp.jpg"/>
             </div>
             <div class="col-md-4">
               <ProgrammingLanguage id="python" logo="python.png"/>
