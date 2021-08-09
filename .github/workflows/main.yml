@@ -34,10 +34,5 @@ jobs:
         run: |
           echo install yarn...
           yarn version
-
-      - name: Install Go
-        run: |
-          echo install golang...
-          wget -cq https://golang.org/dl/go1.16.7.linux-amd64.tar.gz -O - | sudo tar -xz -C /usr/local
-          export PATH=$PATH:/usr/local/go/bin
-
+          yarn install
+          yarn build
