@@ -30,9 +30,15 @@ jobs:
         run: echo starting...!
 
       # Runs a set of commands using the runners shell
-      - name: Install Yarn
+      - name: Yarn Build
         run: |
           echo install yarn...
           yarn version
           yarn install
           yarn build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend
+          path: build
