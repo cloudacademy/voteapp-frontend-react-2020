@@ -46,12 +46,6 @@ jobs:
           name: frontend
           path: deploy
 
-  deploy:
-    runs-on: ubuntu-latest
-
-    needs: [build]
-    #if: github.ref == 'refs/heads/master'
-    steps:
       # Configure AWS credentials
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -67,7 +61,7 @@ jobs:
           --application-name VoteApp \
           --description "VoteApp frontend" \
           --s3-location s3://cloudacademy-frontend/deploy.zip \
-          --source ./deploy
+          --source deploy
 
       # Create deployment to CodeDeploy
       - name: AWS Create Deployment
