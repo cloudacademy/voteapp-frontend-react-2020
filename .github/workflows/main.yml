@@ -62,4 +62,4 @@ jobs:
           s3_folder: deploy
           excluded_files: '.git/* .env storage/framework/cache/* node_modules/*'
           max_polling_iterations: 60
-          directory: ./build
+          directory: build
