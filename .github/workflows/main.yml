@@ -31,23 +31,25 @@ jobs:
           yarn version
           yarn install
           yarn build
+          tar -czf frontend.tar.gz build
           mkdir deploy
           cp appspec.yml deploy/
-          cp -R build deploy/
+          cp frontend.tar.gz deploy/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: frontend
-          path: deploy
+          path: frontend.tar.gz
 
       # Create Release v1
       - name: Make Release
         uses: softprops/action-gh-release@v0.1.5
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files:
-            deploy/**/*
+          files: |
+            appspec.yml
+            frontend.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
