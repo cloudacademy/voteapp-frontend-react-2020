@@ -52,17 +52,29 @@ jobs:
     needs: [build]
     #if: github.ref == 'refs/heads/master'
     steps:
-      - name: AWS CodeDeploy
-        uses: sourcetoad/aws-codedeploy-action@v1
+      # Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          aws_region: us-west-2
-          codedeploy_name: VoteApp
-          codedeploy_group: VoteAppFrontend
-          codedeploy_register_only: false
-          s3_bucket: cloudacademy-frontend
-          s3_folder: deploy
-          excluded_files: '.git/* .env storage/framework/cache/* node_modules/*'
-          max_polling_iterations: 60
-          directory: deploy
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-west-2
+
+      # Deploy push to AWS S3
+      - name: AWS Deploy push
+        run: |
+          aws deploy push \
+          --application-name VoteApp \
+          --description "VoteApp frontend" \
+          --s3-location s3://cloudacademy-frontend/deploy.zip \
+          --source ./deploy
+
+      # Create deployment to CodeDeploy
+      - name: AWS Create Deployment
+        run: |
+          aws deploy create-deployment \
+           --application-name VoteApp \
+           --deployment-config-name CodeDeployDefault.OneAtATime \
+           --deployment-group-name VoteAppFrontend \
+           --file-exists-behavior OVERWRITE \
+           --s3-location bucket=cloudacademy-frontend,key=deploy.zip,bundleType=zip          
