@@ -38,7 +38,7 @@ jobs:
           yarn build
           mkdir deploy
           cp appspec.yml deploy/
-          cp build deploy/
+          cp -R build deploy/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
