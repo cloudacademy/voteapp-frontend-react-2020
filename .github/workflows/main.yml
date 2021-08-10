@@ -3,12 +3,7 @@
 name: CI
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: push
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -57,6 +52,7 @@ jobs:
 
       # Configure AWS credentials
       - name: Configure AWS credentials
+        if: startsWith(github.ref, 'refs/tags/')
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
@@ -65,6 +61,7 @@ jobs:
 
       # Deploy push to AWS S3
       - name: AWS Deploy push
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           aws deploy push \
           --application-name VoteApp \
@@ -74,10 +71,11 @@ jobs:
 
       # Create deployment to CodeDeploy
       - name: AWS Create Deployment
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
           aws deploy create-deployment \
            --application-name VoteApp \
            --deployment-config-name CodeDeployDefault.OneAtATime \
            --deployment-group-name VoteAppFrontend \
            --file-exists-behavior OVERWRITE \
-           --s3-location bucket=cloudacademy-frontend,key=deploy.zip,bundleType=zip          
+           --s3-location bucket=cloudacademy-frontend,key=deploy.zip,bundleType=zip
