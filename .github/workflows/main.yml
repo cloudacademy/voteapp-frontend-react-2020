@@ -41,6 +41,16 @@ jobs:
           name: frontend
           path: deploy
 
+      # Create Release v1
+      - name: Make Release
+        uses: softprops/action-gh-release@v0.1.5
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files:
+            deploy/*  
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Configure AWS credentials
       - name: Configure AWS credentials
         if: startsWith(github.ref, 'refs/tags/')
