@@ -36,12 +36,15 @@ jobs:
           yarn version
           yarn install
           yarn build
+          mkdir deploy
+          cp appspec.yml deploy/
+          cp build deploy/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: frontend
-          path: build
+          path: deploy
 
   deploy:
     runs-on: ubuntu-latest
@@ -62,4 +65,4 @@ jobs:
           s3_folder: deploy
           excluded_files: '.git/* .env storage/framework/cache/* node_modules/*'
           max_polling_iterations: 60
-          directory: build
+          directory: deploy
