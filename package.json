@@ -1,6 +1,11 @@
 {
   "name": "vote-app",
-  "version": "1.0.14",
+  "version": "1.0.15",
+  "author": {
+    "name": "Jeremy Cook",
+    "email": "jeremy.cook@cloudacademy.com",
+    "url": "https://linkedin.com/in/jeremycook123"
+  },
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",
