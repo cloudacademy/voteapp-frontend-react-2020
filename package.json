@@ -5,8 +5,14 @@
   "dependencies": {
     "axios": "^0.21.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
     "react-scripts": "^4.0.3"
+  },
+  "resolutions": {
+    "browserslist": "^4.16.5",
+    "glob-parent": "^5.1.2"
   },
   "scripts": {
     "dev": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && react-scripts start",
