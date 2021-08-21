@@ -1,4 +1,5 @@
-[![Build Status](https://github.com/cloudacademy/voteapp-frontend-react-2020/actions/workflows/main.yml/badge.svg)] ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/cloudacademy/voteapp-frontend-react-2020?style=social)
+![Build Status](https://github.com/cloudacademy/voteapp-frontend-react-2020/actions/workflows/main.yml/badge.svg) 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/cloudacademy/voteapp-frontend-react-2020)
 
 # Background
 Provides a web based frontend written in React. The web application provides a programming language voting feature where end users can vote on 6 different languages (C#, Python, JavaScript, Go, Java, and NodeJS). 
