@@ -3,7 +3,7 @@ name: CICD
 on:
   push:
     tags:
-      - 'v1.*.*'
+      - '1.*.*'
   pull_request:
     branches:
       - master
